@@ -10,7 +10,11 @@ public class Program
 
         //Console.WriteLine(_35搜索插入位置.SearchInsert(new int[] { 1, 3, 5, 6 }, 7));
 
-        _34在排序数组中查找元素的第一个和最后一个位置.SearchRange(new int[] { 5, 7, 7, 8, 8, 10 }, 6);
+        //_34在排序数组中查找元素的第一个和最后一个位置.SearchRange(new int[] { 5, 7, 7, 8, 8, 10 }, 6);
+
+        //Console.WriteLine(_69x的平方根.MySqrt(115141));
+
+        Console.WriteLine(_367有效的完全平方数.IsPerfectSquare(2147483647));
     }
 }
 
@@ -136,5 +140,63 @@ public class _34在排序数组中查找元素的第一个和最后一个位置
             }
         }
         return leftBorder;
+    }
+}
+
+public class _69x的平方根
+{
+    public static int MySqrt(int x)
+    {
+        int left = 0, right = x;
+        int middle = left + (right - left) / 2;
+        int result = middle;
+        while (left <= right)
+        {
+            middle = left + (right - left) / 2;
+            if ((uint)middle * middle > x)
+            {
+                right = middle - 1;
+                result = right;
+            }
+            else if ((uint)middle * middle < x)
+            {
+                left = middle + 1;
+                result = left;
+            }
+            else
+            {
+                return middle;
+            }
+
+            if ((uint)(middle + 1) * (middle + 1) > x && (uint)(middle) * (middle) < x)
+                return middle;
+        }
+
+        return result;
+    }
+}
+
+public class _367有效的完全平方数
+{
+    public static bool IsPerfectSquare(int num)
+    {
+        int left = 0, right = num;
+        while (left <= right)
+        {
+            int middle = left + (right - left) / 2;
+
+            if ((long)middle * middle > num)
+            {
+                right = middle - 1;
+            }
+            else if ((long)middle * middle < num)
+            {
+                left = left + 1;
+            }
+            else
+                return true;
+        }
+
+        return false;
     }
 }
